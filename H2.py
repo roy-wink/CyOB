@@ -1,9 +1,7 @@
 def main():
     # CyOB needs to be imported **after** main call on Windows
-    import sys
-    sys.path.append('.')
     from cyob import CyOB as cyob
-    
+
     # Set functionalities - do not delete, but set to False!
     do_single_plyfiles = True
     do_double_plyfiles = True
@@ -12,7 +10,7 @@ def main():
     do_plots = True
 
     # Set some settings - do not leave empty
-    name = 'H2'                 
+    name = 'H2'
     isovalue = 0.05
     basis_set = 'sto3g'
 
