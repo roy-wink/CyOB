@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Input &mdash; Cython Orbital Builder 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Outputs" href="outputs.html" />
+    <link rel="prev" title="Quantum chemical packages" href="packages.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cython Orbital Builder
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html">Quantum chemical packages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#import">Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-information">Input information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functionalities">Functionalities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atoms">Atoms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dictionary">Dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-calculations">Start calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-options">Debug options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">CyOB functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cython Orbital Builder</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Input</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/input-script.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="input">
+<h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
+<p>As input, CyOB has to be given a dictionary containing a certain amount of input. This dictionary needs to contain the correct information,
+formatted in a certain way. On the <a class="reference external" href="https://github.com/roy-wink/CyOB">GitHub page of CyOB</a>, an example is found for H<sub>2</sub>, which can also be found below. It is highly recommended to change this file with
+the settings you need, instead of creating your own file. On this page, extra information can be found about the blocks of information in the file.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Download the input file from GitHub, instead of copying it from down below.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example of a CyOB execution script for H<sub>2</sub></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+        <span class="c1"># CyOB needs to be imported **after** main call on Windows</span>
+        <span class="kn">from</span> <span class="nn">cyob</span> <span class="kn">import</span> <span class="n">CyOB</span> <span class="k">as</span> <span class="n">cyob</span>
+
+        <span class="c1"># Set functionalities - do not delete, but set to False!</span>
+        <span class="n">do_single_plyfiles</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">do_double_plyfiles</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">do_coefficients</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">do_abofile</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">do_plots</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Set some settings - do not leave empty</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;H2&#39;</span>
+        <span class="n">isovalue</span> <span class="o">=</span> <span class="mf">0.05</span>
+        <span class="n">basis_set</span> <span class="o">=</span> <span class="s1">&#39;sto3g&#39;</span>
+
+        <span class="c1"># Set atoms</span>
+        <span class="c1"># Add atoms in this format:</span>
+        <span class="c1">#       (&#39;element&#39;, x-pos, y-pos, z-pos, &#39;unit&#39;)</span>
+        <span class="c1"># Place molecule on the xy-plane if possible.</span>
+        <span class="n">atom_list</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.36628549</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;angstrom&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.36628549</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;angstrom&#39;</span><span class="p">)</span>
+                     <span class="p">]</span>
+
+        <span class="c1"># Create dictionary - do not change!</span>
+        <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;do_single_plyfiles&#39;</span><span class="p">:</span> <span class="n">do_single_plyfiles</span><span class="p">,</span>
+                      <span class="s1">&#39;do_double_plyfiles&#39;</span><span class="p">:</span> <span class="n">do_double_plyfiles</span><span class="p">,</span>
+                      <span class="s1">&#39;do_coefficients&#39;</span><span class="p">:</span> <span class="n">do_coefficients</span><span class="p">,</span>
+                      <span class="s1">&#39;do_abofile&#39;</span><span class="p">:</span> <span class="n">do_abofile</span><span class="p">,</span>
+                      <span class="s1">&#39;do_plots&#39;</span><span class="p">:</span> <span class="n">do_plots</span><span class="p">,</span>
+                      <span class="s1">&#39;atom_list&#39;</span><span class="p">:</span> <span class="n">atom_list</span><span class="p">,</span>
+                      <span class="s1">&#39;isovalue&#39;</span><span class="p">:</span> <span class="n">isovalue</span><span class="p">,</span>
+                      <span class="s1">&#39;basis_set&#39;</span><span class="p">:</span> <span class="n">basis_set</span><span class="p">,</span>
+                      <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+
+        <span class="c1"># Call CyOB to start the calculations</span>
+        <span class="n">cyob</span><span class="o">.</span><span class="n">handler</span><span class="p">(</span><span class="n">input_dict</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="import">
+<h2>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h2>
+<p>On the first line, CyOB is imported as <code class="docutils literal notranslate"><span class="pre">cyob</span></code>. It is important that the import is formulated in this exact way.
+Also, the import needs to be placed after the main call when running on Windows, otherwise Spyder will crash.</p>
+</div>
+<div class="section" id="input-information">
+<h2>Input information<a class="headerlink" href="#input-information" title="Permalink to this headline">¶</a></h2>
+<p>After the import, the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function starts, which first contains all the important information, creates the dictionary and finally calls CyOB.</p>
+<div class="section" id="functionalities">
+<h3>Functionalities<a class="headerlink" href="#functionalities" title="Permalink to this headline">¶</a></h3>
+<p>The first few lines contain the <cite>functionalities</cite> (also called the <em>doables</em>). These functionalities determine what CyOB will calculate and create.
+All these settings have to be <code class="docutils literal notranslate"><span class="pre">Booleans</span></code> (True/False, with capitals) and have to be present. This means that the used should not remove the
+functionality settings, and should also not use strings or numbers as input.</p>
+<p>The following functionalities exist:</p>
+<dl class="docutils">
+<dt>do_single_plyfiles</dt>
+<dd>Determines whether CyOB creates polygon (.ply) files of single lobes of the molecular orbitals.</dd>
+<dt>do_double_plyfiles</dt>
+<dd>Determines whether CyOB creates polygon (.ply) files of whole molecular orbitals (both lobes).</dd>
+<dt>do_coefficients</dt>
+<dd>Determines whether CyOB exports the molecular orbital coefficients as .txt file.</dd>
+<dt>do_abofile</dt>
+<dd>Determines whether CyOB creates an .abo file, which can be opened by Managlyph.</dd>
+<dt>do_plots</dt>
+<dd>Determines whether CyOB creates .png images of the contour plots of the molecular orbitals.</dd>
+</dl>
+<p>Examples of these outputs can be found on the <a class="reference internal" href="outputs.html#outputs"><span class="std std-ref">Outputs</span></a> page.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Think wisely about what you need. Everything costs computing power, and thus time. The bigger the molecule, the longer everything takes.
+Therefore, the more time you waste on useless calculations.</p>
+</div>
+</div>
+<div class="section" id="settings">
+<h3>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h3>
+<p>Then, some settings have to be set. The following settings are important:</p>
+<dl class="docutils">
+<dt>name</dt>
+<dd>This is the name of the molecule. It is used to export the desired files in a comprehensive way, as describes on the <a class="reference internal" href="outputs.html#outputs"><span class="std std-ref">Outputs</span></a> page.
+The name has to be a <code class="docutils literal notranslate"><span class="pre">string</span></code>.</dd>
+<dt>isovalue</dt>
+<dd>The isovalue determines how large the orbitals will be after the tessellation. The isovalue has to be a <code class="docutils literal notranslate"><span class="pre">float</span> <span class="pre">or</span> <span class="pre">integer</span></code>.
+The lower the isovalue, the larger the shown orbitals.</dd>
+<dt>basis_set</dt>
+<dd>The basis set determines the set of functions that are used to represent the electronic wave function in the Hartree–Fock calculations. The basis set
+has to be a <code class="docutils literal notranslate"><span class="pre">string</span></code>, and there are four options: <code class="docutils literal notranslate"><span class="pre">p321</span></code>, <code class="docutils literal notranslate"><span class="pre">p631</span></code>, <code class="docutils literal notranslate"><span class="pre">sto3g</span></code>, <code class="docutils literal notranslate"><span class="pre">sto6g</span></code>.</dd>
+</dl>
+</div>
+<div class="section" id="atoms">
+<h3>Atoms<a class="headerlink" href="#atoms" title="Permalink to this headline">¶</a></h3>
+<p>Next up, the atoms are given to CyOB. Adding the atoms is quite a tedious process, and a small formatting error is easily made. Luckily, CyOB was
+constructed in such a way that it prints very clearly what goes wrong in the case something is not fully correct.</p>
+<p>Atoms are written down as <code class="docutils literal notranslate"><span class="pre">(tuples)</span></code> inside a <code class="docutils literal notranslate"><span class="pre">[list]</span></code>. Hence, for every atom, a separate tuple has to be made, which are grouped together in the list.
+All tuples are separated by a comma, and four ease, you are allowed to place the tuples on separate lines. Be sure to only insert a new line after a comma.</p>
+<p>Tuples for atoms are formatted as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;element&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">x</span><span class="o">-</span><span class="n">pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">y</span><span class="o">-</span><span class="n">pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">z</span><span class="o">-</span><span class="n">pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Herein, the element and the unit have to be <code class="docutils literal notranslate"><span class="pre">'strings'</span></code>. One must give the abbreviation of the element as known from the periodic table, not the atomic number.
+The x-, y-, and z-positions have to be <code class="docutils literal notranslate"><span class="pre">integers</span> <span class="pre">or</span> <span class="pre">floats</span></code>. The only allowed units are <code class="docutils literal notranslate"><span class="pre">bohr</span></code> (Bohr atomic units of length), <code class="docutils literal notranslate"><span class="pre">angstrom</span></code>
+(Ångström; 10<sup>-10</sup> meter) and <code class="docutils literal notranslate"><span class="pre">pm</span></code> (picometer; 10<sup>-12</sup> meter).</p>
+<p>Note that the density plots show a cross section of the molecule through the xy-plane. Therefore, it is wise to place the molecule in the xy-plane
+as much as possible, since this leads to the best results.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Do not forget to use periods (<code class="docutils literal notranslate"><span class="pre">.</span></code>) as decimal separators, and not commas.</p>
+</div>
+</div>
+</div>
+<div class="section" id="dictionary">
+<h2>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline">¶</a></h2>
+<p>Following, the dictionary of the input has to be made, in order to give this in a quick and comprehensive way to CyOB.
+Please do not change anything to this part of the code.</p>
+</div>
+<div class="section" id="start-calculations">
+<h2>Start calculations<a class="headerlink" href="#start-calculations" title="Permalink to this headline">¶</a></h2>
+<p>Finally, the calculations can be started. This is done by calling the main handler of CyOB via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cyob</span><span class="o">.</span><span class="n">handler</span><span class="p">(</span><span class="n">input_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The input dictionary (<code class="docutils literal notranslate"><span class="pre">input_dict</span></code>) is given to the handler as an input parameter. This is validated for correctness, and then the calculations are started.</p>
+<p>In Spyder, press <code class="docutils literal notranslate"><span class="pre">F5</span></code> to run the script.
+In the console, CyOB will keep the user updated on the current state of the calculations.</p>
+</div>
+<div class="section" id="debug-options">
+<h2>Debug options<a class="headerlink" href="#debug-options" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The debug options should only be used for testing, since this could alter the output.
+Only use these options if you know what you are doing!</p>
+</div>
+<p>Two other flags could be added to the input dictionary:</p>
+<dl class="docutils">
+<dt>‘parent_folder’: <code class="docutils literal notranslate"><span class="pre">str</span></code></dt>
+<dd>Changes the location of where the output files are saved. Inside the specified folder, a parent folder with the name of the molecule is still made.
+Be sure to use relative folder paths.</dd>
+<dt>‘always_overwrite’: <code class="docutils literal notranslate"><span class="pre">Boolean</span></code></dt>
+<dd>If set to true, CyOB does not check whether the parent folder already exists, and hence overwrites as a standard. This is useful for a testing environment
+where no keyboard inputs can be given via a console e.g.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="outputs.html" class="btn btn-neutral float-right" title="Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="packages.html" class="btn btn-neutral float-left" title="Quantum chemical packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Roy Wink.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Outputs &mdash; Cython Orbital Builder 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CyOB functions" href="functions.html" />
+    <link rel="prev" title="Input" href="input-script.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cython Orbital Builder
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html">Quantum chemical packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input-script.html">Input</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abo">.abo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ply">.ply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density-plots">Density plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orbital-coefficients">Orbital coefficients</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">CyOB functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cython Orbital Builder</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Outputs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/outputs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="outputs">
+<h1>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h1>
+<p>In the same folder as the file from which you call the CyOB handler, a folder will be created with the name you have given for the molecule.
+In this folder, a file named <code class="docutils literal notranslate"><span class="pre">input.txt</span></code> is saved. This file contains all the input information the user gave to CyOB.</p>
+<p>Furthermore, for every functionality executed, another folder is created inside the aforementioned folder, containing the output files.
+Below, these files are discussed, as well as how to open them.</p>
+<div class="section" id="abo">
+<h2>.abo<a class="headerlink" href="#abo" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">.abo</span></code> file is saved in the <code class="docutils literal notranslate"><span class="pre">abofile</span></code> folder. These kind of files can be opened by <a class="reference external" href="https://www.managlyph.nl/">Managlyph</a>. Managlyph is a neat little program,
+designed in order to easily visualize orbitals.</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="_images/AboH2_1.png"><img alt="The bonding orbital of |H2| as shown using Managlyph" src="_images/AboH2_1.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">The bonding orbital of H<sub>2</sub> as shown using Managlyph</span></p>
+</div>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="_images/AboH2_2.png"><img alt="The antibonding orbital of |H2| as shown using Managlyph" src="_images/AboH2_2.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">The antibonding orbital of H<sub>2</sub> as shown using Managlyph</span></p>
+</div>
+</div>
+<div class="section" id="ply">
+<h2>.ply<a class="headerlink" href="#ply" title="Permalink to this headline">¶</a></h2>
+<p>The polygon (<code class="docutils literal notranslate"><span class="pre">.ply</span></code>) files are saved in the folders <code class="docutils literal notranslate"><span class="pre">single_plyfiles</span></code> and <code class="docutils literal notranslate"><span class="pre">double_plyfiles</span></code>. On most Windows systems, Print 3D is already
+installed, which can easily open these types of files. Otherwise, <a class="reference external" href="https://www.blender.org/">Blender</a> or <a class="reference external" href="http://openctm.sourceforge.net/">OpenCTM</a> could be used.</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="_images/dplyH2_1.png"><img alt="Double ``.ply`` file of the bonding orbital of |H2| shown using OpenCTM" src="_images/dplyH2_1.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Double <code class="docutils literal notranslate"><span class="pre">.ply</span></code> file of the bonding orbital of H<sub>2</sub> shown using OpenCTM</span></p>
+</div>
+<div class="figure" id="id4">
+<a class="reference internal image-reference" href="_images/dplyH2_2.png"><img alt="Double ``.ply`` file of the antibonding orbital of |H2| shown using OpenCTM" src="_images/dplyH2_2.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Double <code class="docutils literal notranslate"><span class="pre">.ply</span></code> file of the antibonding orbital of H<sub>2</sub> shown using OpenCTM</span></p>
+</div>
+</div>
+<div class="section" id="density-plots">
+<h2>Density plots<a class="headerlink" href="#density-plots" title="Permalink to this headline">¶</a></h2>
+<p>For the density plots, <code class="docutils literal notranslate"><span class="pre">.png</span></code> files are stored in the <code class="docutils literal notranslate"><span class="pre">density_plots</span></code> folder. In the current version of CyOB, there is no option for choosing
+the colors used in these plots.</p>
+<div class="figure" id="id5">
+<a class="reference internal image-reference" href="_images/H2_figure1.png"><img alt="Density plot of the bonding orbital of |H2|" src="_images/H2_figure1.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Density plot of the bonding orbital of H<sub>2</sub></span></p>
+</div>
+<div class="figure" id="id6">
+<a class="reference internal image-reference" href="_images/H2_figure2.png"><img alt="Density plot of the antibonding orbital of |H2|" src="_images/H2_figure2.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Density plot of the antibonding orbital of H<sub>2</sub></span></p>
+</div>
+</div>
+<div class="section" id="orbital-coefficients">
+<h2>Orbital coefficients<a class="headerlink" href="#orbital-coefficients" title="Permalink to this headline">¶</a></h2>
+<p>For the orbital coefficients, a single <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file is stored in the <code class="docutils literal notranslate"><span class="pre">orbital_coeff</span></code> folder. Herein, the rows depict the atomic orbitals and the
+columns represent the molecular orbitals.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="functions.html" class="btn btn-neutral float-right" title="CyOB functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="input-script.html" class="btn btn-neutral float-left" title="Input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Roy Wink.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

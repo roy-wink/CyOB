@@ -1,0 +1,10 @@
+do_single_plyfiles: False
+do_double_plyfiles: False
+do_coefficients: False
+do_abofile: True
+do_plots: False
+atom_list: [('H', 0, 0.36628549, 0, 'angstrom'), ('H', 0, -0.36628549, 0, 'angstrom')]
+isovalue: 0.05
+basis_set: sto3g
+name: H2
+always_overwrite: True

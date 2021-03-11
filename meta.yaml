@@ -1,0 +1,51 @@
+package:
+  name: cyob
+  version: "0.1.2"
+
+source:
+  path: .
+
+build:
+  script: {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - numpy
+
+  host:
+    - python
+    - numpy
+
+  run:
+    - python
+    - numpy
+    - matplotlib
+    - pyqint
+    - pytessel
+
+test:
+  requires:
+    - pyqint
+    - pytessel
+    - numpy
+    - matplotlib
+    - nose
+  
+  source_files:
+    - tests/*.py
+    - tests/results/abofile/*.abo
+    - tests/results/density_plots/*.png
+    - tests/results/double_plyfiles/*.ply
+    - tests/results/orbital_coeff/*.txt
+    - tests/results/*.txt
+  
+  commands:
+    - nosetests tests
+
+about:
+  home: https://github.com/roy-wink/CyOB
+  license: GPL3
+  license_family: GPL
+  summary: Python package for easily calculating and visualizing molecular orbitals.
+  description: See documentation for more information via ....
+  
