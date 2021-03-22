@@ -21,4 +21,4 @@ conda install -c rwink cyob
 ```
 
 # Excecution and more information
-Check the CyOB documentation via ... for all important information.
+Check the CyOB documentation via [this link](https://cyob.ddoc.dev/) for all important information.
