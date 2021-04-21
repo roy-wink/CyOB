@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='cyob',
-    version='0.1.2',
+    version='0.2',
     description='Python package for easily calculating and visualizing molecular orbitals.',
     url='https://github.com/roy-wink/CyOB',
     author='Roy Wink',

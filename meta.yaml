@@ -1,6 +1,6 @@
 package:
   name: cyob
-  version: "0.1.2"
+  version: "0.2"
 
 source:
   path: .
@@ -47,5 +47,5 @@ about:
   license: GPL3
   license_family: GPL
   summary: Python package for easily calculating and visualizing molecular orbitals.
-  description: See documentation for more information via ....
+  description: See documentation for more information via https://cyob.ddoc.dev/
   
