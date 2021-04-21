@@ -10,6 +10,25 @@ import os
 import re
 
 
+def _version():
+    """
+    Function to return the version of CyOB in ``string`` format.
+    
+    """
+    cyob_version = '0.2'
+    return cyob_version
+
+
+def _ang2bohr():
+    """
+    Function to return the conversion factor from Angstrom to Bohr a.u. in
+    ``float`` format.
+    
+    """
+    ang2bohr = 1.88973
+    return ang2bohr
+
+
 def handler(input_dict):
     """
     The main handler for Cython Orbital Builder. Takes the information from the
@@ -24,32 +43,38 @@ def handler(input_dict):
     if not validity_check(input_dict):
         sys.exit('Invalid input. Unknown error.')
 
-    print('Calculations for %s started' % input_dict['name'])
+    print('CyOB execution for %s started' % input_dict['name'])
 
     # Read functionalities
-    do_single_plyfiles = input_dict['do_single_plyfiles']
-    do_double_plyfiles = input_dict['do_double_plyfiles']
-    do_coefficients = input_dict['do_coefficients']
-    do_abofile = input_dict['do_abofile']
-    do_plots = input_dict['do_plots']
+    try:
+        do_single_plyfiles = input_dict['do_single_plyfiles']
+        do_double_plyfiles = input_dict['do_double_plyfiles']
+        do_coefficients = input_dict['do_coefficients']
+        do_energies = input_dict['do_energies']
+        do_abofile = input_dict['do_abofile']
+        do_plots = input_dict['do_plots']
+    except Exception as e:
+        sys.exit('Missing input functionality: %s' % e)
 
 # perform HF calculations
-    cgfs, coeff = calculate_molecule(input_dict['name'], input_dict['atom_list'], input_dict['basis_set'])
-    print('Hartree-Fock calculations for %s done' % input_dict['name'])
+    print('Hartree-Fock calculations for %s started' % input_dict['name'])
+    cgfs, coeff, energy, energies = calculate_molecule(input_dict['name'], 
+                                                       input_dict['atom_list'], 
+                                                       input_dict['basis_set'])
 
 # make a dict of tesselated things for efficiency
+    print('Making tesselation dictionary')
     tesselation_needed = do_single_plyfiles or do_double_plyfiles or do_abofile
     if tesselation_needed:
         orbital_info = tesselate_all(cgfs, coeff, input_dict['isovalue'])
-        print('tesselation dictionary made')
 
 # start doing things
     # create parent folder
     if 'parent_folder' in input_dict:
         parent_folder = os.path.join(input_dict['parent_folder'], input_dict['name'])
     else:
-        parent_folder = input_dict['name']
-    print('Working in parent folder: %s' % os.path.join(os.getcwd(), parent_folder))
+        parent_folder = os.path.join(os.getcwd(), input_dict['name'])
+    print('Working in parent folder: %s' % parent_folder)
 
     if not os.path.exists(parent_folder):
         os.mkdir(parent_folder)
@@ -66,9 +91,10 @@ def handler(input_dict):
             print((line + ': ' + str(input_dict[line])), file=info_file)
 
     # make .ply files
+    print('Creating .ply files for single lobes of %s' % input_dict['name'])
     if do_single_plyfiles:
         # generate folder
-        sp_folder = parent_folder + '\\single_plyfiles'
+        sp_folder = os.path.join(parent_folder, 'single_plyfiles')
         if not os.path.exists(sp_folder):
             os.mkdir(sp_folder)
 
@@ -77,47 +103,62 @@ def handler(input_dict):
             single_polygon(filename, orb, 'positive')
             filename = '%s\\%s_orb%s.ply' % (sp_folder, input_dict['name'], str(orb['orbital']) + '_neg')
             single_polygon(filename, orb, 'negative')
-        print('.ply files for single lobes of %s created' % input_dict['name'])
+        print('\tDone!')
 
     if do_double_plyfiles:
+        print('Creating .ply files for full orbitals of %s' % input_dict['name'])
         # generate folder
-        dp_folder = parent_folder + '\\double_plyfiles'
+        dp_folder = os.path.join(parent_folder, 'double_plyfiles')
         if not os.path.exists(dp_folder):
             os.mkdir(dp_folder)
 
         for orb in orbital_info:
             filename = '%s\\%s_orb%s.ply' % (dp_folder, input_dict['name'], str(orb['orbital']))
             double_polygon(filename, orb)
-        print('.ply files for full orbitals of %s created' % input_dict['name'])
+        print('\tDone!')
 
     if do_abofile:
-        abo_folder = parent_folder + '\\abofile'
+        print('Creating .abo file for %s' % input_dict['name'])
+        abo_folder = os.path.join(parent_folder, 'abofile')
         if not os.path.exists(abo_folder):
             os.mkdir(abo_folder)
 
         build_abo(orbital_info, abo_folder + '\\' + input_dict['name'], input_dict['atom_list'], input_dict['basis_set'])
-        print('.abo file for %s created' % input_dict['name'])
+        print('\tDone!')
 
     if do_plots:
-        p_folder = parent_folder + '\\density_plots'
+        print('Creating density plots for %s' % input_dict['name'])
+        p_folder = os.path.join(parent_folder, 'density_plots')
         if not os.path.exists(p_folder):
             os.mkdir(p_folder)
 
-        make_plots(cgfs, coeff, p_folder + '\\' + input_dict['name'])
-        print('density plots for %s created' % input_dict['name'])
+        filename = os.path.join(p_folder, input_dict['name'])
+        make_plots(input_dict['atom_list'], cgfs, coeff, filename, input_dict['plot_show_atoms'])
+        print('\tDone!')
 
     if do_coefficients:
-        c_folder = parent_folder + '\\orbital_coeff'
+        print('Exporting orbital coefficients for %s' % input_dict['name'])
+        c_folder = os.path.join(parent_folder, 'orbital_coeff')
         if not os.path.exists(c_folder):
             os.mkdir(c_folder)
 
         filename = '%s\\%s_orbital_coefficients.txt' % (c_folder, input_dict['name'])
         np.savetxt(filename, coeff)
-        print('orbital coefficients for %s exported' % input_dict['name'])
+        print('\tDone!')
+    
+    if do_energies:
+        print('Exporting energies for %s' % input_dict['name'])
+        e_folder = os.path.join(parent_folder, 'energies')
+        if not os.path.exists(e_folder):
+            os.mkdir(e_folder)
+
+        filename = '%s\\%s_energies.txt' % (e_folder, input_dict['name'])
+        export_energies(energy, energies, filename)
+        print('\tDone!')
+
 
     runtime = time.time() - start
-    print('Finished execution for %s in %s seconds' % (input_dict['name'], '{:.4f}'.format(runtime)))
-
+    print('Finished CyOB execution for %s in %s seconds' % (input_dict['name'], '{:.4f}'.format(runtime)))
 
 
 def validity_check(input_dict):
@@ -130,6 +171,22 @@ def validity_check(input_dict):
     :param input_dict: The input ``dictionary``.
     
     """
+
+    # check doables
+    all_dos = ['do_single_plyfiles', 'do_double_plyfiles', 'do_coefficients',
+               'do_energies', 'do_abofile', 'do_plots']
+    do_list = [do for do in input_dict if re.match('do_*', do)]
+    for do in do_list:
+        if not isinstance(input_dict[do], bool):
+            sys.exit('Formatting error found in input functionality %s (not a boolean)' % do)
+        if do not in all_dos:
+            sys.exit('Unknown functionality found in input: %s' % do)
+
+    # check if all settings are present
+    all_settings = ['name', 'isovalue', 'basis_set']
+    for setting in all_settings:
+        if setting not in all_settings:
+            sys.exit('Missing setting argument: %s' % setting)
 
     # check isovalue
     try:
@@ -148,11 +205,12 @@ def validity_check(input_dict):
     if input_dict['basis_set'] not in ('p321', 'p631', 'sto3g', 'sto6g'):
         sys.exit('Unknown basis set: %s' % input_dict['basis_set'])
 
-    # check booleans
-    do_list = [do for do in input_dict if re.match('do_*', do)]
-    for do in do_list:
-        if not isinstance(input_dict[do], bool):
-            sys.exit('Formatting error found in input functionality %s (not a boolean)' % do)
+    # check atoms plot flag (does not have to be present if not plotting)
+    if input_dict['do_plots']:
+        if 'plot_show_atoms' not in input_dict:
+            sys.exit('Missing setting argument: plot_show_atoms')
+        if input_dict['plot_show_atoms'] not in ('all', 'none', 'in_plane'):
+            sys.exit('Unknown argument for plot_show_atoms: %s' % input_dict['plot_show_atoms'])
 
     # check atoms
     if not isinstance(input_dict['atom_list'], list):
@@ -161,7 +219,6 @@ def validity_check(input_dict):
         sys.exit('No atoms in input')
 
     # first locate basis set to check for valid atoms
-        # moet dit? Doet pyqint ook al soort van
     basis_loc = '%s\\basis\\%s.json' % (os.path.dirname(pyqint.__file__), input_dict['basis_set'])
     basis_data = json.load(open(basis_loc))
 
@@ -174,7 +231,6 @@ def validity_check(input_dict):
 
         element, x, y, z = atom[:4]
         if element not in basis_data:
-            print(element)
             sys.exit('Unknown element type: %s' % element)
 
         for value in [x, y, z]:
@@ -222,9 +278,9 @@ def calculate_molecule(name, atoms, basis):
     try:
         result = HF().rhf(mol, basis)
     except Exception as e:
-        print("An error occured: %s" % e)
+        print('An error occured: %s' % e)
 
-    return result['cgfs'], result['orbc']
+    return result['cgfs'], result['orbc'], result['energy'], result['energies']
 
 
 def tesselate(cgfs, coeff, isovalue=0.01):
@@ -247,7 +303,7 @@ def tesselate(cgfs, coeff, isovalue=0.01):
     # build grid
     div = 100
     length = 5
-    ang2bohr = 1.88973
+    ang2bohr = _ang2bohr()
     grid = integrator.build_rectgrid3d(-length, length, div)
     unitcell = np.multiply(np.diag(np.ones(3) * 2 * length), 1 / ang2bohr)
     # To go from bohr to A, since this is the unit for managlyph
@@ -326,7 +382,7 @@ def double_polygon(filename, orbital_dict):
     :param filename: Filename under which the created file will be saved\
         (``str``, including suffix)
     :param orbital_dict: ``Dictionary`` of the information of the desired\
-        molecular orbital as created by:py:func:`CyOB.tesselate_all`.
+        molecular orbital as created by :py:func:`CyOB.tesselate_all`.
     
     """
 
@@ -403,7 +459,7 @@ def build_abo(orbital_info, name, atoms, basis):
 
             # bohr has to be converted to angstrom
             if len(atom) > 4 and atom[4] == 'bohr':
-                ang2bohr = 1.88973
+                ang2bohr = _ang2bohr()
                 for pos in range(1,4):
                     atom[pos] = atom[pos] / ang2bohr
 
@@ -461,46 +517,91 @@ def build_abo(orbital_info, name, atoms, basis):
     f.close()
 
 
-def make_plots(cgfs, coeff, name):
+def make_plots(atom_list, cgfs, coeff, name, plot_show_atoms):
     """
     Function for creating the contour plots of the orbitals using the
     PyQInt package.
     
+    :param atoms: The ``list`` of atom ``tuples``.
     :param cgfs: Contracted Gaussion gasis functions of the molecule.
     :param coeff: Coefficients of the desired molecular orbital (``list``).
     :param name: The name of the molecule, used to determine the name of the\
         files (str).
+    :param plot_show_atoms: Argument that tells whether or not to plot atom\
+        letters in the plots.
     
     """
 
     integrator = PyQInt()
+    
+    # First set all dimensions to Bohr a.u.
+    for n in range(len(atom_list)):
+        atom = atom_list[n]
+        x, y, z = atom[1:4]
+        unit = atom[4] if len(atom) == 5 else 'bohr'
+        if unit == 'pm':
+            x, y = x / 100, y / 100
+            unit = 'angstrom'
+        
+        if unit == 'angstrom':
+            ang2bohr = _ang2bohr()
+            x, y = x * ang2bohr, y * ang2bohr
+            unit = 'bohr'
+        
+        atom_list[n] = (atom[0], x, y, z, unit)
+
+    # get x- and y-locations to make the best grid
+    max_x_loc = np.max([np.abs(atom[1]) for atom in atom_list])
+    max_y_loc = np.max([np.abs(atom[2]) for atom in atom_list])
+
+    x_range = np.max([3 * np.sqrt(max_x_loc), 2.5])
+    y_range = np.max([3 * np.sqrt(max_y_loc), 2.5])
+
+    #build grid
+    x = np.linspace(-x_range, x_range, 100)
+    y = np.linspace(-y_range, y_range, 100)
+    xx, yy = np.meshgrid(x,y)
+    zz = np.zeros(len(x) * len(y))
+    grid = np.vstack([xx.flatten(), yy.flatten(), zz]).reshape(3,-1).T
 
     # Turn interactive plotting off and save current state
     old_plt_query = plt.isinteractive()
     if old_plt_query:
         plt.ioff()
 
-    # build grid
-    x = np.linspace(-2, 2, 100)
-    y = np.linspace(-2, 2, 100)
-    xx, yy = np.meshgrid(x,y)
-    zz = np.zeros(len(x) * len(y))
-    grid = np.vstack([xx.flatten(), yy.flatten(), zz]).reshape(3,-1).T
-
     for i in range(len(coeff)):
         dens = integrator.plot_wavefunction(grid, coeff[:,i], cgfs).reshape((len(y), len(x)))
 
         fig = plt.figure(i + 1)
         axes = fig.add_subplot(1, 1, 1)
-        limit = max(abs(np.min(dens)), abs(np.max(dens)))
+        
+        # define benchmark to spot nodal planes
+        benchmark = 1e-2
+        limit = max(max(abs(np.min(dens)), abs(np.max(dens))), benchmark)
+        
         im = axes.imshow(dens, origin='lower', interpolation='bilinear',
-            extent=[-2,2,-2,2], cmap='RdBu', vmin=-limit, vmax=limit)
+            extent=[-x_range,x_range,-y_range,y_range], cmap='RdBu', vmin=-limit, vmax=limit)
             # cmap is kleur. PiYG voor paars-groen, RdBu voor blauw-rood, RdGy voor rood zwart
         axes.set_xlabel('Distance a.u. (x-axis)')
         axes.set_ylabel('Distance a.u. (y-axis)')
         divider = make_axes_locatable(axes)
         cax = divider.append_axes('right', size='5%', pad=0.05)
         fig.colorbar(im, cax=cax, orientation='vertical')
+        
+        if limit == benchmark:
+            print('\tOrbital number %i probably has a nodal plane on the xy-plane.' % (i + 1))
+            print('\tRotate the molecule over the z-axis and run again to be certain.\n')
+            im.remove()
+        
+        if plot_show_atoms in ['all', 'in_plane']:
+            for atom in atom_list:
+                element = atom[0]
+                x_atom_loc, y_atom_loc, z_atom_loc = atom[1:4]
+                if z_atom_loc == 0 or plot_show_atoms == 'all':
+                    axes.text(x_atom_loc + 0.01, y_atom_loc - 0.01, element, horizontalalignment='center', 
+                              verticalalignment='center', fontsize=12, color='w')
+                    axes.text(x_atom_loc + 0.00, y_atom_loc - 0.00, element, horizontalalignment='center', 
+                              verticalalignment='center', fontsize=12, color='k')
 
         filename = ('%s_figure%s.png' % (name, str(i + 1)))
         fig.savefig(filename, dpi=300)
@@ -509,3 +610,26 @@ def make_plots(cgfs, coeff, name):
     # Turn interactive plotting back on if it was like that
     if old_plt_query:
         plt.ion()
+
+
+def export_energies(energy, energies, filename):
+    """
+    Function for exporting the system energy and orbital energies.
+    
+    :param energy: Energy of the system (``float``).
+    :param energies: Energies of the molecular orbitals (``list``).
+    :param filename: filename of the .txt file where the function exports to \
+        (``str``).
+
+    """
+    
+    f = open(filename, 'w')
+    
+    f.write('Molecule energy:\n')
+    f.write('%f\n\n' % energy)
+
+    f.write('Orbital energies:\n')
+    for e in energies:
+        f.write('%f\n' % e)
+
+    f.close()
