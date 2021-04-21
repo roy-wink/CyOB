@@ -1,4 +1,4 @@
-do_single_plyfiles: True
+do_single_plyfiles: False
 do_double_plyfiles: True
 do_coefficients: True
 do_energies: True
@@ -9,3 +9,5 @@ plot_show_atoms: in_plane
 isovalue: 0.05
 basis_set: sto3g
 name: H2
+always_overwrite: True
+parent_folder: tests
