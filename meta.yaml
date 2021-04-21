@@ -36,6 +36,7 @@ test:
     - tests/results/abofile/*.abo
     - tests/results/density_plots/*.png
     - tests/results/double_plyfiles/*.ply
+    - tests/results/energies/*.txt
     - tests/results/orbital_coeff/*.txt
     - tests/results/*.txt
   
