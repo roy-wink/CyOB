@@ -21,7 +21,7 @@ conda install -c rwink cyob
 ```
 
 # Excecution and more information
-Check the CyOB documentation via https://cyob.ddoc.dev/ for all important information.
+Check the CyOB documentation via [this link](https://cyob.ddoc.dev/) for all important information.
 
 # Changelog version 0.2
 In version 0.2, the possibility was added to export energies of the molecular orbitals and the entire system.
