@@ -20,13 +20,13 @@ print(os.path.abspath('../cyob'))
 # -- Project information -----------------------------------------------------
 
 project = u'Cython Orbital Builder'
-copyright = u'2021, Roy Wink'
+copyright = u'2021, Roy Wink, IMC, TU/e'
 author = u'Roy Wink'
 
 # The short X.Y version
-version = u'0.1'
+version = u'0.2'
 # The full version, including alpha/beta/rc tags
-release = u'0.1.2'
+release = u'0.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -78,7 +78,12 @@ pygments_style = 'sphinx'
 #
 import sphinx_rtd_theme
 html_theme = 'sphinx_rtd_theme'
-htm_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_logo = 'files/CyOB_logo.png'
+html_theme_options = {
+    'logo_only': False,
+    'display_version': False
+    }
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
