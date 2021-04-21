@@ -3,11 +3,11 @@ Input
 =====
 
 As input, CyOB has to be given a dictionary containing a certain amount of input. This dictionary needs to contain the correct information,
-formatted in a certain way. On the `GitHub page of CyOB`_, an example is found for |H2|, which can also be found below. It is highly recommended to change this file with
+formatted in a certain way. On the `GitHub page of CyOB`_, an example is found for |H2| (called ``H2.py``), which can also be found below. It is highly recommended to change this file with
 the settings you need, instead of creating your own file. On this page, extra information can be found about the blocks of information in the file.
 
 .. tip::
-	Download the input file from GitHub, instead of copying it from down below.
+	Download or copy-paste the input file from GitHub, instead of copying it from down below.
 
 .. code-block:: python
 	:caption: Example of a CyOB execution script for |H2|
@@ -20,6 +20,7 @@ the settings you need, instead of creating your own file. On this page, extra in
 		do_single_plyfiles = False
 		do_double_plyfiles = False
 		do_coefficients = False
+		do_energies = True
 		do_abofile = True
 		do_plots = True
 
@@ -27,6 +28,7 @@ the settings you need, instead of creating your own file. On this page, extra in
 		name = 'H2'                 
 		isovalue = 0.05
 		basis_set = 'sto3g'
+		plot_show_atoms = 'in_plane'
 
 		# Set atoms
 		# Add atoms in this format:
@@ -34,7 +36,7 @@ the settings you need, instead of creating your own file. On this page, extra in
 		# Place molecule on the xy-plane if possible.
 		atom_list = [('H', 0, 0.36628549, 0, 'angstrom'),
 			     ('H', 0, -0.36628549, 0, 'angstrom')
-			     ]
+			    ]
 
 		# Create dictionary - do not change!
 		input_dict = {'do_single_plyfiles': do_single_plyfiles,
@@ -43,6 +45,7 @@ the settings you need, instead of creating your own file. On this page, extra in
 			      'do_abofile': do_abofile,
 			      'do_plots': do_plots,
 			      'atom_list': atom_list,
+				  'plot_show_atoms': plot_show_atoms,
 			      'isovalue': isovalue,
 			      'basis_set': basis_set,
 			      'name': name}
@@ -67,7 +70,7 @@ After the import, the ``main()`` function starts, which first contains all the i
 Functionalities
 ~~~~~~~~~~~~~~~
 The first few lines contain the `functionalities` (also called the *doables*). These functionalities determine what CyOB will calculate and create. 
-All these settings have to be ``Booleans`` (True/False, with capitals) and have to be present. This means that the used should not remove the 
+All these settings have to be ``Booleans`` (True/False, with capitals) and have to be present. This means that the user should not remove the 
 functionality settings, and should also not use strings or numbers as input.
 
 The following functionalities exist:
@@ -78,6 +81,8 @@ do_double_plyfiles
 	Determines whether CyOB creates polygon (.ply) files of whole molecular orbitals (both lobes).
 do_coefficients
 	Determines whether CyOB exports the molecular orbital coefficients as .txt file.
+do_energies
+	Determines whether CyOB exports the energy of the molecule and energies of the molecular orbitals into a .txt file.
 do_abofile
 	Determines whether CyOB creates an .abo file, which can be opened by Managlyph.
 do_plots
@@ -97,7 +102,7 @@ Settings
 Then, some settings have to be set. The following settings are important:
 
 name
-	This is the name of the molecule. It is used to export the desired files in a comprehensive way, as describes on the :ref:`outputs` page. 
+	This is the name of the molecule. It is used to export the desired files in a comprehensive way, as described on the :ref:`outputs` page. 
 	The name has to	be a ``string``.
 isovalue
 	The isovalue determines how large the orbitals will be after the tessellation. The isovalue has to be a ``float or integer``.
@@ -105,6 +110,10 @@ isovalue
 basis_set
 	The basis set determines the set of functions that are used to represent the electronic wave function in the Hartree–Fock calculations. The basis set
 	has to be a ``string``, and there are four options: ``p321``, ``p631``, ``sto3g``, ``sto6g``.
+plot_show_atoms
+	This argument decides whether the plots will have labels for atoms at their respective positions. There are three options: ``none``, ``all`` and ``in_plane``.
+	The first two options will place no labels, or labels for all atoms, respectively. The final option only places labels for atoms that are placed on the xy-plane,
+	since this is the plane of the plot. If do_plots is set to ``False``, this argument is disregarded.
 
 
 Atoms
@@ -113,7 +122,7 @@ Next up, the atoms are given to CyOB. Adding the atoms is quite a tedious proces
 constructed in such a way that it prints very clearly what goes wrong in the case something is not fully correct.
 
 Atoms are written down as ``(tuples)`` inside a ``[list]``. Hence, for every atom, a separate tuple has to be made, which are grouped together in the list.
-All tuples are separated by a comma, and four ease, you are allowed to place the tuples on separate lines. Be sure to only insert a new line after a comma.
+All tuples are separated by a comma, and for ease, you are allowed to place the tuples on separate lines. Be sure to only insert a new line after a comma.
 
 Tuples for atoms are formatted as follows::
 

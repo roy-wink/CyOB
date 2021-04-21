@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>CyOB functions &mdash; Cython Orbital Builder 0.1.2 documentation</title>
+  <title>CyOB functions &mdash; Cython Orbital Builder 0.2 documentation</title>
   
 
   
@@ -58,15 +58,11 @@
           
 
           
+            
+            <img src="_static/CyOB_logo.png" class="logo" alt="Logo"/>
+          
           </a>
 
-          
-            
-            
-              <div class="version">
-                0.1
-              </div>
-            
           
 
           
@@ -289,7 +285,7 @@ Vertices, normals and indices are combined before creating the file.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>filename</strong> – Filename under which the created file will be saved        (<code class="docutils literal notranslate"><span class="pre">str</span></code>, including suffix)</li>
-<li><strong>orbital_dict</strong> – <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code> of the information of the desired        molecular orbital as created by:py:func:<cite>CyOB.tesselate_all</cite>.</li>
+<li><strong>orbital_dict</strong> – <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code> of the information of the desired        molecular orbital as created by <a class="reference internal" href="#CyOB.tesselate_all" title="CyOB.tesselate_all"><code class="xref py py-func docutils literal notranslate"><span class="pre">CyOB.tesselate_all()</span></code></a>.</li>
 </ul>
 </td>
 </tr>
@@ -319,7 +315,7 @@ Vertices, normals and indices are combined before creating the file.</p>
 
 <dl class="function">
 <dt id="CyOB.make_plots">
-<code class="descclassname">CyOB.</code><code class="descname">make_plots</code><span class="sig-paren">(</span><em>cgfs</em>, <em>coeff</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#CyOB.make_plots" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">CyOB.</code><code class="descname">make_plots</code><span class="sig-paren">(</span><em>atom_list</em>, <em>cgfs</em>, <em>coeff</em>, <em>name</em>, <em>plot_show_atoms</em><span class="sig-paren">)</span><a class="headerlink" href="#CyOB.make_plots" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function for creating the contour plots of the orbitals using the
 PyQInt package.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -327,9 +323,30 @@ PyQInt package.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>atoms</strong> – The <code class="docutils literal notranslate"><span class="pre">list</span></code> of atom <code class="docutils literal notranslate"><span class="pre">tuples</span></code>.</li>
 <li><strong>cgfs</strong> – Contracted Gaussion gasis functions of the molecule.</li>
 <li><strong>coeff</strong> – Coefficients of the desired molecular orbital (<code class="docutils literal notranslate"><span class="pre">list</span></code>).</li>
 <li><strong>name</strong> – The name of the molecule, used to determine the name of the        files (str).</li>
+<li><strong>plot_show_atoms</strong> – Argument that tells whether or not to plot atom        letters in the plots.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="CyOB.export_energies">
+<code class="descclassname">CyOB.</code><code class="descname">export_energies</code><span class="sig-paren">(</span><em>energy</em>, <em>energies</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#CyOB.export_energies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for exporting the system energy and orbital energies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>energy</strong> – Energy of the system (<code class="docutils literal notranslate"><span class="pre">float</span></code>).</li>
+<li><strong>energies</strong> – Energies of the molecular orbitals (<code class="docutils literal notranslate"><span class="pre">list</span></code>).</li>
+<li><strong>filename</strong> – filename of the .txt file where the function exports to         (<code class="docutils literal notranslate"><span class="pre">str</span></code>).</li>
 </ul>
 </td>
 </tr>
@@ -353,7 +370,7 @@ PyQInt package.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, Roy Wink.
+        &#169; Copyright 2021, Roy Wink, IMC, TU/e.
 
     </p>
   </div>

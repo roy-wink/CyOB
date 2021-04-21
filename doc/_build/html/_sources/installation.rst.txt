@@ -10,8 +10,8 @@ Spyder
 ------
 
 Spyder, one of the best Python development environments, can be installed via the `Anaconda website`_.
-This link should take you directly to the installation page for Spyder stand-alone. It is also possible to install the entire
-Anaconda navigator, but this is not necessairy, since you will only need Spyder.
+Note that CyOB is dependend of the conda environment. Therefore, the Anaconda environment needs to be installed.
+A stand-alone install of Spyder, sadly, will not work.
 
 
 Extra packages
@@ -37,11 +37,11 @@ CyOB is installed in a similar fashion as described above. Run the following com
 
 	conda install -c rwink cyob
 
-If CyOB is already installed, but you want to upgrade to the newest version (at least version 0.1.2 is required),
+If CyOB is already installed, but you want to upgrade to the newest version (at least version 0.2 is required),
 use the following command::
 
 	conda update -c rwink cyob
 
 
 
-.. _Anaconda website: https://docs.spyder-ide.org/current/installation.html#standalone-installers-ref
+.. _Anaconda website: https://www.anaconda.com/products/individual

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Input &mdash; Cython Orbital Builder 0.1.2 documentation</title>
+  <title>Input &mdash; Cython Orbital Builder 0.2 documentation</title>
   
 
   
@@ -58,15 +58,11 @@
           
 
           
+            
+            <img src="_static/CyOB_logo.png" class="logo" alt="Logo"/>
+          
           </a>
 
-          
-            
-            
-              <div class="version">
-                0.1
-              </div>
-            
           
 
           
@@ -179,11 +175,11 @@
   <div class="section" id="input">
 <h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
 <p>As input, CyOB has to be given a dictionary containing a certain amount of input. This dictionary needs to contain the correct information,
-formatted in a certain way. On the <a class="reference external" href="https://github.com/roy-wink/CyOB">GitHub page of CyOB</a>, an example is found for H<sub>2</sub>, which can also be found below. It is highly recommended to change this file with
+formatted in a certain way. On the <a class="reference external" href="https://github.com/roy-wink/CyOB">GitHub page of CyOB</a>, an example is found for H<sub>2</sub> (called <code class="docutils literal notranslate"><span class="pre">H2.py</span></code>), which can also be found below. It is highly recommended to change this file with
 the settings you need, instead of creating your own file. On this page, extra information can be found about the blocks of information in the file.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">Download the input file from GitHub, instead of copying it from down below.</p>
+<p class="last">Download or copy-paste the input file from GitHub, instead of copying it from down below.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Example of a CyOB execution script for H<sub>2</sub></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
@@ -195,6 +191,7 @@ the settings you need, instead of creating your own file. On this page, extra in
         <span class="n">do_single_plyfiles</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">do_double_plyfiles</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">do_coefficients</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">do_energies</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">do_abofile</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">do_plots</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -202,6 +199,7 @@ the settings you need, instead of creating your own file. On this page, extra in
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;H2&#39;</span>
         <span class="n">isovalue</span> <span class="o">=</span> <span class="mf">0.05</span>
         <span class="n">basis_set</span> <span class="o">=</span> <span class="s1">&#39;sto3g&#39;</span>
+        <span class="n">plot_show_atoms</span> <span class="o">=</span> <span class="s1">&#39;in_plane&#39;</span>
 
         <span class="c1"># Set atoms</span>
         <span class="c1"># Add atoms in this format:</span>
@@ -209,7 +207,7 @@ the settings you need, instead of creating your own file. On this page, extra in
         <span class="c1"># Place molecule on the xy-plane if possible.</span>
         <span class="n">atom_list</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.36628549</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;angstrom&#39;</span><span class="p">),</span>
                      <span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.36628549</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;angstrom&#39;</span><span class="p">)</span>
-                     <span class="p">]</span>
+                    <span class="p">]</span>
 
         <span class="c1"># Create dictionary - do not change!</span>
         <span class="n">input_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;do_single_plyfiles&#39;</span><span class="p">:</span> <span class="n">do_single_plyfiles</span><span class="p">,</span>
@@ -218,6 +216,7 @@ the settings you need, instead of creating your own file. On this page, extra in
                       <span class="s1">&#39;do_abofile&#39;</span><span class="p">:</span> <span class="n">do_abofile</span><span class="p">,</span>
                       <span class="s1">&#39;do_plots&#39;</span><span class="p">:</span> <span class="n">do_plots</span><span class="p">,</span>
                       <span class="s1">&#39;atom_list&#39;</span><span class="p">:</span> <span class="n">atom_list</span><span class="p">,</span>
+                          <span class="s1">&#39;plot_show_atoms&#39;</span><span class="p">:</span> <span class="n">plot_show_atoms</span><span class="p">,</span>
                       <span class="s1">&#39;isovalue&#39;</span><span class="p">:</span> <span class="n">isovalue</span><span class="p">,</span>
                       <span class="s1">&#39;basis_set&#39;</span><span class="p">:</span> <span class="n">basis_set</span><span class="p">,</span>
                       <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
@@ -241,7 +240,7 @@ Also, the import needs to be placed after the main call when running on Windows,
 <div class="section" id="functionalities">
 <h3>Functionalities<a class="headerlink" href="#functionalities" title="Permalink to this headline">¶</a></h3>
 <p>The first few lines contain the <cite>functionalities</cite> (also called the <em>doables</em>). These functionalities determine what CyOB will calculate and create.
-All these settings have to be <code class="docutils literal notranslate"><span class="pre">Booleans</span></code> (True/False, with capitals) and have to be present. This means that the used should not remove the
+All these settings have to be <code class="docutils literal notranslate"><span class="pre">Booleans</span></code> (True/False, with capitals) and have to be present. This means that the user should not remove the
 functionality settings, and should also not use strings or numbers as input.</p>
 <p>The following functionalities exist:</p>
 <dl class="docutils">
@@ -251,6 +250,8 @@ functionality settings, and should also not use strings or numbers as input.</p>
 <dd>Determines whether CyOB creates polygon (.ply) files of whole molecular orbitals (both lobes).</dd>
 <dt>do_coefficients</dt>
 <dd>Determines whether CyOB exports the molecular orbital coefficients as .txt file.</dd>
+<dt>do_energies</dt>
+<dd>Determines whether CyOB exports the energy of the molecule and energies of the molecular orbitals into a .txt file.</dd>
 <dt>do_abofile</dt>
 <dd>Determines whether CyOB creates an .abo file, which can be opened by Managlyph.</dd>
 <dt>do_plots</dt>
@@ -268,7 +269,7 @@ Therefore, the more time you waste on useless calculations.</p>
 <p>Then, some settings have to be set. The following settings are important:</p>
 <dl class="docutils">
 <dt>name</dt>
-<dd>This is the name of the molecule. It is used to export the desired files in a comprehensive way, as describes on the <a class="reference internal" href="outputs.html#outputs"><span class="std std-ref">Outputs</span></a> page.
+<dd>This is the name of the molecule. It is used to export the desired files in a comprehensive way, as described on the <a class="reference internal" href="outputs.html#outputs"><span class="std std-ref">Outputs</span></a> page.
 The name has to be a <code class="docutils literal notranslate"><span class="pre">string</span></code>.</dd>
 <dt>isovalue</dt>
 <dd>The isovalue determines how large the orbitals will be after the tessellation. The isovalue has to be a <code class="docutils literal notranslate"><span class="pre">float</span> <span class="pre">or</span> <span class="pre">integer</span></code>.
@@ -276,6 +277,10 @@ The lower the isovalue, the larger the shown orbitals.</dd>
 <dt>basis_set</dt>
 <dd>The basis set determines the set of functions that are used to represent the electronic wave function in the Hartree–Fock calculations. The basis set
 has to be a <code class="docutils literal notranslate"><span class="pre">string</span></code>, and there are four options: <code class="docutils literal notranslate"><span class="pre">p321</span></code>, <code class="docutils literal notranslate"><span class="pre">p631</span></code>, <code class="docutils literal notranslate"><span class="pre">sto3g</span></code>, <code class="docutils literal notranslate"><span class="pre">sto6g</span></code>.</dd>
+<dt>plot_show_atoms</dt>
+<dd>This argument decides whether the plots will have labels for atoms at their respective positions. There are three options: <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">in_plane</span></code>.
+The first two options will place no labels, or labels for all atoms, respectively. The final option only places labels for atoms that are placed on the xy-plane,
+since this is the plane of the plot. If do_plots is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, this argument is disregarded.</dd>
 </dl>
 </div>
 <div class="section" id="atoms">
@@ -283,7 +288,7 @@ has to be a <code class="docutils literal notranslate"><span class="pre">string<
 <p>Next up, the atoms are given to CyOB. Adding the atoms is quite a tedious process, and a small formatting error is easily made. Luckily, CyOB was
 constructed in such a way that it prints very clearly what goes wrong in the case something is not fully correct.</p>
 <p>Atoms are written down as <code class="docutils literal notranslate"><span class="pre">(tuples)</span></code> inside a <code class="docutils literal notranslate"><span class="pre">[list]</span></code>. Hence, for every atom, a separate tuple has to be made, which are grouped together in the list.
-All tuples are separated by a comma, and four ease, you are allowed to place the tuples on separate lines. Be sure to only insert a new line after a comma.</p>
+All tuples are separated by a comma, and for ease, you are allowed to place the tuples on separate lines. Be sure to only insert a new line after a comma.</p>
 <p>Tuples for atoms are formatted as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;element&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">x</span><span class="o">-</span><span class="n">pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">y</span><span class="o">-</span><span class="n">pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">z</span><span class="o">-</span><span class="n">pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">)</span>
 </pre></div>
@@ -347,7 +352,7 @@ where no keyboard inputs can be given via a console e.g.</dd>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, Roy Wink.
+        &#169; Copyright 2021, Roy Wink, IMC, TU/e.
 
     </p>
   </div>
