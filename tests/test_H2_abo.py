@@ -9,6 +9,7 @@ class TestH2(unittest.TestCase):
 
         np.testing.assert_equal(abo_res, abo_tes)
 
+    # Testing the plots is a pain due to inaccuracies. A better way has to be found.
     # def test_H2plot(self):
     #     # Test the first plot
     #     plot_1_res = open('tests\\results\\density_plots\\H2_figure1.png', 'rb').read()
@@ -47,3 +48,10 @@ class TestH2(unittest.TestCase):
         input_tes = open('tests\\H2\\input.txt', 'r').read()
 
         np.testing.assert_equal(input_res, input_tes)
+    
+    def test_H2energy(self):
+        # Test the energy output:
+        energy_res = open('tests\\results\\energies\\H2_energies.txt', 'r').read()
+        energy_tes = open('tests\\H2\\energies\\H2_energies.txt', 'r').read()
+        
+        np.testing.assert_equal(energy_res, energy_tes)
