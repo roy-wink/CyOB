@@ -25,6 +25,6 @@ Check the CyOB documentation via [this link](https://cyob.ddoc.dev/) for all imp
 
 # Changelog version 0.2
 In version 0.2, the possibility was added to export energies of the molecular orbitals and the entire system.
-More user-friendlyness was added in the event there is a mistake in the input file. Now, CyOB check whether all functionalities and settings are present. Also, redundant input exits execution, instead of simply being discarded.
-The density plots got a big overhaul. The size of the plots and the scale on the axis are now dynamic and depend on the size of the molecule. Labels for the atoms can be placed in the plots using the plot_show_atoms argument. When CyOB thinks a nodal plane is present, the plot will be blank and a prompt will be given.
+More user-friendlyness was added in the event there is a mistake in the input file. Now, CyOB checks whether all functionalities and settings are present. Also, redundant input exits execution, instead of simply being discarded.
+The density plots got a big overhaul. The size of the plots and the scale on the axis are now dynamic and depend on the size of the molecule. Labels for the atoms can be placed in the plots using the ```plot_show_atoms``` argument. When CyOB thinks a nodal plane is present, the plot will be blank and a prompt will be given.
 Finally, the documentation was addapted accordingly and spelling errors were fixed. Also, the beta-testers got their name on the appropriate place.
