@@ -45,7 +45,7 @@ the settings you need, instead of creating your own file. On this page, extra in
 			      'do_abofile': do_abofile,
 			      'do_plots': do_plots,
 			      'atom_list': atom_list,
-				  'plot_show_atoms': plot_show_atoms,
+			      'plot_show_atoms': plot_show_atoms,
 			      'isovalue': isovalue,
 			      'basis_set': basis_set,
 			      'name': name}
