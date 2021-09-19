@@ -21,7 +21,7 @@ More information can be found on the `GitHub page of PyQInt`_.
 
 PyTessel
 --------
-PyTessel is a python package for building isosurfaces from 3D scalar fields
+PyTessel is a python package for building isosurfaces from 3D scalar fields.
 
 More information can be found on the `GitHub page of PyTessel`_.
 

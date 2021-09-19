@@ -12,7 +12,7 @@ Below, these files are discussed, as well as how to open them.
 .abo
 ----
 
-The ``.abo`` file is saved in the ``abofile`` folder. These kind of files can be opened by `Managlyph`_. Managlyph is a neat little program,
+The ``.abo`` file is saved in the ``abofile`` folder. This kind of files can be opened by `Managlyph`_. Managlyph is a neat little program,
 designed in order to easily visualize orbitals. 
 
 .. figure:: files/AboH2_1.png
@@ -55,8 +55,9 @@ installed, which can easily open these types of files. Otherwise, `Blender`_ or 
 Density plots
 -------------
 
-For the density plots, ``.png`` files are stored in the ``density_plots`` folder. In the current version of CyOB, there is no option for choosing
-the colors used in these plots.
+For the density plots, ``.png`` files are stored in the ``density_plots`` folder. 
+CyOB tries to auto-detect nodal planes. In this case, the plot will be blank and a prompt about this will be given in de console.
+In the current version of CyOB, there is no option for choosing the colors used in these plots.
 
 .. figure:: files/H2_figure1.png
    :width: 400
@@ -70,6 +71,10 @@ the colors used in these plots.
    
    Density plot of the antibonding orbital of |H2|
 
+.. note::
+   Due to the way PyQInt works, along with the fact that there are an (almost) infinity number of solutions to the Schrödinger equation,
+   there exists a chance that CyOB fails to flag a nodal plane. Always take another look at the plot and its scale yourself.
+   Luckily, false positives are very rare.
 
 Orbital coefficients
 --------------------

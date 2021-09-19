@@ -8,7 +8,9 @@ r.wink@student.tue.nl.
 
 The editors would like to thank all bèta testers:
 
-* Jan
-* Piet
-* Peter
+* Huub van den Bogaard, BSc
+* Lulu Chen, MSc
+* Roos Krösschell, MSc
+* Storm van Merwijk, BSc
+* Sanne Pigmans, BSc
 

@@ -6,6 +6,7 @@ def main():
     do_single_plyfiles = True
     do_double_plyfiles = True
     do_coefficients = True
+    do_energies = True
     do_abofile = True
     do_plots = True
 
@@ -13,6 +14,7 @@ def main():
     name = 'H2'
     isovalue = 0.05
     basis_set = 'sto3g'
+    plot_show_atoms = 'in_plane'
 
     # Set atoms
     # Add atoms in this format:
@@ -26,9 +28,11 @@ def main():
     input_dict = {'do_single_plyfiles': do_single_plyfiles,
                   'do_double_plyfiles': do_double_plyfiles,
                   'do_coefficients': do_coefficients,
+                  'do_energies': do_energies,
                   'do_abofile': do_abofile,
                   'do_plots': do_plots,
                   'atom_list': atom_list,
+                  'plot_show_atoms': plot_show_atoms,
                   'isovalue': isovalue,
                   'basis_set': basis_set,
                   'name': name}

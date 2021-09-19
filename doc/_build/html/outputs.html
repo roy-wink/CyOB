@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Outputs &mdash; Cython Orbital Builder 0.1.2 documentation</title>
+  <title>Outputs &mdash; Cython Orbital Builder 0.2 documentation</title>
   
 
   
@@ -58,15 +58,11 @@
           
 
           
+            
+            <img src="_static/CyOB_logo.png" class="logo" alt="Logo"/>
+          
           </a>
 
-          
-            
-            
-              <div class="version">
-                0.1
-              </div>
-            
           
 
           
@@ -178,7 +174,7 @@ In this folder, a file named <code class="docutils literal notranslate"><span cl
 Below, these files are discussed, as well as how to open them.</p>
 <div class="section" id="abo">
 <h2>.abo<a class="headerlink" href="#abo" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">.abo</span></code> file is saved in the <code class="docutils literal notranslate"><span class="pre">abofile</span></code> folder. These kind of files can be opened by <a class="reference external" href="https://www.managlyph.nl/">Managlyph</a>. Managlyph is a neat little program,
+<p>The <code class="docutils literal notranslate"><span class="pre">.abo</span></code> file is saved in the <code class="docutils literal notranslate"><span class="pre">abofile</span></code> folder. This kind of files can be opened by <a class="reference external" href="https://www.managlyph.nl/">Managlyph</a>. Managlyph is a neat little program,
 designed in order to easily visualize orbitals.</p>
 <div class="figure" id="id1">
 <a class="reference internal image-reference" href="_images/AboH2_1.png"><img alt="The bonding orbital of |H2| as shown using Managlyph" src="_images/AboH2_1.png" style="width: 400px;" /></a>
@@ -204,8 +200,9 @@ installed, which can easily open these types of files. Otherwise, <a class="refe
 </div>
 <div class="section" id="density-plots">
 <h2>Density plots<a class="headerlink" href="#density-plots" title="Permalink to this headline">¶</a></h2>
-<p>For the density plots, <code class="docutils literal notranslate"><span class="pre">.png</span></code> files are stored in the <code class="docutils literal notranslate"><span class="pre">density_plots</span></code> folder. In the current version of CyOB, there is no option for choosing
-the colors used in these plots.</p>
+<p>For the density plots, <code class="docutils literal notranslate"><span class="pre">.png</span></code> files are stored in the <code class="docutils literal notranslate"><span class="pre">density_plots</span></code> folder.
+CyOB tries to auto-detect nodal planes. In this case, the plot will be blank and a prompt about this will be given in de console.
+In the current version of CyOB, there is no option for choosing the colors used in these plots.</p>
 <div class="figure" id="id5">
 <a class="reference internal image-reference" href="_images/H2_figure1.png"><img alt="Density plot of the bonding orbital of |H2|" src="_images/H2_figure1.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text">Density plot of the bonding orbital of H<sub>2</sub></span></p>
@@ -213,6 +210,12 @@ the colors used in these plots.</p>
 <div class="figure" id="id6">
 <a class="reference internal image-reference" href="_images/H2_figure2.png"><img alt="Density plot of the antibonding orbital of |H2|" src="_images/H2_figure2.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text">Density plot of the antibonding orbital of H<sub>2</sub></span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Due to the way PyQInt works, along with the fact that there are an (almost) infinity number of solutions to the Schrödinger equation,
+there exists a chance that CyOB fails to flag a nodal plane. Always take another look at the plot and its scale yourself.
+Luckily, false positives are very rare.</p>
 </div>
 </div>
 <div class="section" id="orbital-coefficients">
@@ -236,7 +239,7 @@ columns represent the molecular orbitals.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, Roy Wink.
+        &#169; Copyright 2021, Roy Wink, IMC, TU/e.
 
     </p>
   </div>
